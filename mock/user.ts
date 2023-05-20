@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-18 11:41:46
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-18 11:50:09
+ * @LastEditTime: 2023-05-20 10:50:25
  */
 function createUserList() {
   return [
@@ -12,7 +12,7 @@ function createUserList() {
       avatar:
         'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: 'admin',
-      password: '111111',
+      password: '123456',
       desc: '平台管理员',
       roles: ['平台管理员'],
       buttons: ['cuser.detail'],
@@ -24,7 +24,7 @@ function createUserList() {
       avatar:
         'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: 'system',
-      password: '111111',
+      password: '123456',
       desc: '系统管理员',
       roles: ['系统管理员'],
       buttons: ['cuser.detail', 'cuser.user'],

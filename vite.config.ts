@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-18 11:59:54
+ * @LastEditTime: 2023-05-20 11:40:56
  */
 import { ConfigEnv, UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -14,7 +14,6 @@ import { viteMockServe } from 'vite-plugin-mock'
 import path from 'path'
 // 引入svg
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
