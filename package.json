@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://huccct.github.io/vue-admin",
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc && vite build",

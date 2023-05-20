@@ -12,12 +12,12 @@ let router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoute,
   // 滚动行为
-  scrollBehavior ( ) {
+  scrollBehavior() {
     return {
-        left: 0,
-        top:0
+      left: 0,
+      top: 0,
     }
-  }
+  },
 })
 
 export default router

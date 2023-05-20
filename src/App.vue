@@ -3,18 +3,16 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-19 17:49:36
+ * @LastEditTime: 2023-05-19 22:31:35
 -->
 <script setup lang="ts">
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import { onMounted, ref } from 'vue'
-import { reqLogin } from './api/user'
+import { ref } from 'vue'
+
 const locale = ref(zhCn)
 
-onMounted(() => {
-  reqLogin({ username: 'admin', password: '111111' })
-})
+
 </script>
 
 <template>
