@@ -1,3 +1,10 @@
+/*
+ * @Description: Stay hungry，Stay foolish
+ * @Author: Huccct
+ * @Date: 2023-05-19 17:46:49
+ * @LastEditors: Huccct
+ * @LastEditTime: 2023-05-20 20:27:48
+ */
 export const constantRoute = [
   {
     path: '/login',
@@ -6,7 +13,7 @@ export const constantRoute = [
   },
   {
     path: '/',
-    component: () => import('@/views/home/index.vue'),
+    component: () => import('@/layout/index.vue'),
     name: 'layout',
   },
   {
