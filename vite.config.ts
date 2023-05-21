@@ -19,6 +19,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
+    base: '/vue-admin/',
     plugins: [
       VueSetupExtend(),
       DefineOptions(),
