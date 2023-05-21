@@ -3,14 +3,14 @@ import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
 import TabBar from './tabbar/index.vue'
 import Main from './main/index.vue'
-import userLayOutSettingStore from '@/store/modules/setting'
+import useLayOutSettingStore from '@/store/modules/setting'
 import useUserStore from '@/store/modules/user'
 import { useRoute } from 'vue-router'
 
 let userStore = useUserStore()
 let $route = useRoute()
 
-let LayOutSettingStore = userLayOutSettingStore()
+let LayOutSettingStore = useLayOutSettingStore()
 </script>
 <template>
   <el-container class="layout-container-demo" style="height: 100vh">

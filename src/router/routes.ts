@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:46:49
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-21 16:37:50
+ * @LastEditTime: 2023-05-21 20:41:23
  */
 export const constantRoute = [
   {
@@ -20,8 +20,9 @@ export const constantRoute = [
     component: () => import('@/layout/index.vue'),
     name: 'layout',
     meta: {
-      title: 'layout',
+      title: '',
       hidden: false,
+      icon: '',
     },
     redirect: '/home',
     children: [
@@ -55,6 +56,7 @@ export const constantRoute = [
       hidden: false,
       icon: 'Lock',
     },
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
@@ -106,6 +108,7 @@ export const constantRoute = [
       hidden: false,
       icon: 'Goods',
     },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

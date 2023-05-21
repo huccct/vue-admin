@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 21:33:11
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-21 17:22:07
+ * @LastEditTime: 2023-05-21 21:20:42
 -->
 <script setup lang="ts">
 import {
@@ -12,10 +12,25 @@ import {
   FullScreen,
   ArrowDown,
 } from '@element-plus/icons-vue'
+import useLayOutSettingStore from '@/store/modules/setting'
+let layoutSettingStore = useLayOutSettingStore()
+
+const updateRefsh = () => {
+  layoutSettingStore.refsh = !layoutSettingStore.refsh
+}
+
+const fullScreen = () => {
+  let full = document.fullscreenElement
+  if (!full) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
 </script>
 <template>
-  <el-button circle size="small" :icon="Refresh" />
-  <el-button circle size="small" :icon="FullScreen" />
+  <el-button circle size="small" :icon="Refresh" @click="updateRefsh" />
+  <el-button circle size="small" :icon="FullScreen" @click="fullScreen" />
   <el-button circle size="small" :icon="Setting" />
   <img src="../../../assets/images/logo.jpg" alt="" />
   <el-dropdown>
