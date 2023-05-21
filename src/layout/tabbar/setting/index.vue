@@ -1,3 +1,10 @@
+<!--
+ * @Description: Stay hungry，Stay foolish
+ * @Author: Huccct
+ * @Date: 2023-05-20 21:33:11
+ * @LastEditors: Huccct
+ * @LastEditTime: 2023-05-21 17:22:07
+-->
 <script setup lang="ts">
 import {
   Refresh,
@@ -12,7 +19,7 @@ import {
   <el-button circle size="small" :icon="Setting" />
   <img src="../../../assets/images/logo.jpg" alt="" />
   <el-dropdown>
-    <span class="el-dropdown-link">
+    <span class="el-dropdown-link" style="cursor: pointer">
       admin
       <el-icon class="el-icon--right">
         <arrow-down />

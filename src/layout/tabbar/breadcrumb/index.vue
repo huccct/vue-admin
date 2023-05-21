@@ -13,7 +13,7 @@ const changeIcon = () => {
     size="20px"
     @click="changeIcon"
   >
-    <component :is="LayOutSettingStore.isCollapse ? Fold : Expand"></component>
+    <component :is="LayOutSettingStore.isCollapse ? Expand : Fold"></component>
   </el-icon>
   <el-breadcrumb separator="/" :separator-icon="ArrowRight">
     <el-breadcrumb-item>promotion list</el-breadcrumb-item>

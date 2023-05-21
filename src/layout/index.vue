@@ -2,10 +2,14 @@
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
 import TabBar from './tabbar/index.vue'
-import { Setting } from '@element-plus/icons-vue'
+import Main from './main/index.vue'
 import userLayOutSettingStore from '@/store/modules/setting'
 import useUserStore from '@/store/modules/user'
+import { useRoute } from 'vue-router'
+
 let userStore = useUserStore()
+let $route = useRoute()
+
 let LayOutSettingStore = userLayOutSettingStore()
 </script>
 <template>
@@ -16,11 +20,12 @@ let LayOutSettingStore = userLayOutSettingStore()
     >
       <el-scrollbar>
         <el-menu
-          :default-openeds="['1', '3']"
+          :default-active="$route.path"
           active-text-color="#fff"
           background-color="#001529"
           text-color="#959ea6"
           :collapse="LayOutSettingStore.isCollapse"
+          :router="true"
         >
           <Logo />
           <Menu :menuList="userStore.menuRoutes" />
@@ -30,7 +35,13 @@ let LayOutSettingStore = userLayOutSettingStore()
 
     <el-container>
       <TabBar style="width: 100%" />
-      <el-main><h1>123123123123</h1></el-main>
+      <el-main
+        :style="{ left: !LayOutSettingStore.isCollapse ? '200px' : '56px' }"
+      >
+        <el-scrollbar>
+          <Main />
+        </el-scrollbar>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -39,7 +50,11 @@ let LayOutSettingStore = userLayOutSettingStore()
   border-right: none;
 }
 .layout-container-demo .el-main {
+  position: absolute;
   padding: 0;
+  left: 200px;
+  top: 60px;
+  transition: all 0.3s;
 }
 
 .el-aside {
