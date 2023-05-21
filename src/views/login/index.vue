@@ -20,7 +20,7 @@ import image5 from '@/assets/images/verifyCode/3812.png'
 import image6 from '@/assets/images/verifyCode/4294.png'
 import image7 from '@/assets/images/verifyCode/6061.png'
 import image8 from '@/assets/images/verifyCode/6102.png'
-import image9 from '@/assets/images/verifyCode/9322.png'
+import image9 from '@/assets/images/verifyCode/8322.png'
 import image10 from '@/assets/images/verifyCode/9041.png'
 
 let $router = useRouter()
