@@ -10,11 +10,13 @@ import { reqLogin } from '@/api/user'
 import type { LoginForm, LoginResponseData } from '@/api/user/type'
 import type { UserState } from './types/types'
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+import { constantRoute } from '@/router/routes'
 let useUserStore = defineStore('User', {
   // 小仓库存储数据的地方
   state: (): UserState => {
     return {
       token: GET_TOKEN() as unknown as string,
+      menuRoutes: constantRoute,
     }
   },
   // 异步|逻辑的地方

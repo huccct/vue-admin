@@ -6,3 +6,4 @@ declare module '*.vue' {
 }
 declare module 'element-plus'
 declare module 'nprogress'
+declare module 'element-plus/dist/locale/zh-cn.mjs'

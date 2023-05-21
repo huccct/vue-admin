@@ -5,7 +5,10 @@
       //路径映射，相对于baseUrl
       "@/*": ["src/*"]
     },
-    "types": ["element-plus/global"],
+    "types": [
+      "unplugin-vue-define-options/macros-global",
+      "element-plus/global"
+    ],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
