@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-20 11:41:08
+ * @LastEditTime: 2023-05-22 22:08:06
  */
 import { createApp } from 'vue'
 import App from '@/App.vue'
@@ -15,6 +15,7 @@ import 'element-plus/theme-chalk/el-notification.css'
 import '@/styles/index.scss'
 import router from './router'
 import pinia from './store'
+import './permission'
 
 const app = createApp(App)
 app.use(globalComponent)

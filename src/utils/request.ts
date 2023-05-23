@@ -3,13 +3,12 @@
  * @Author: Huccct
  * @Date: 2023-05-18 12:11:32
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-20 11:57:28
+ * @LastEditTime: 2023-05-23 14:53:42
  */
 // 二次封装axios
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import nprogress from 'nprogress'
-import 'nprogress/nprogress.css'
+import useUserStore from '@/store/modules/user'
 let request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
@@ -17,7 +16,12 @@ let request = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    nprogress.start()
+    let userStore = useUserStore()
+
+    if (userStore.token) {
+      config.headers.token = userStore.token
+    }
+
     return config
   },
   (error) => {
@@ -28,7 +32,6 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     if (response.status === 200) {
-      nprogress.done()
       return Promise.resolve(response.data)
     } else {
       return Promise.reject(response.data)

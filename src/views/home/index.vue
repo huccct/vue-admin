@@ -3,9 +3,18 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:54
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-21 17:00:00
+ * @LastEditTime: 2023-05-22 20:44:30
 -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+
+import useUserStore from '@/store/modules/user'
+let userStore = useUserStore()
+
+onMounted(() => {
+  userStore.userInfo()
+})
+</script>
 <template>
   <h1>qweqweqweqweqweqwe</h1>
 </template>

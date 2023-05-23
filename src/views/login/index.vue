@@ -3,12 +3,12 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-20 20:19:50
+ * @LastEditTime: 2023-05-22 21:40:08
 -->
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
 import { computed, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 // VerifyCode import
@@ -24,6 +24,7 @@ import image9 from '@/assets/images/verifyCode/8322.png'
 import image10 from '@/assets/images/verifyCode/9041.png'
 
 let $router = useRouter()
+let $route = useRoute()
 let loading = ref(false)
 import useUserStore from '@/store/modules/user'
 let useStore = useUserStore()
@@ -99,6 +100,8 @@ const login = async () => {
   loading.value = true
   try {
     await useStore.userLogin(loginForm)
+    let redirect: string = $route.query.redirect as string
+    $router.push({ path: redirect || '/' })
     $router.push('/')
     ElNotification({
       type: 'success',
@@ -214,6 +217,7 @@ const rules = {
     top: 25vh;
     left: 10vw;
     padding: 10px;
+    background: transparent;
     h1 {
       background: linear-gradient(to right, blue, rgb(35, 60, 70));
       -webkit-background-clip: text;
