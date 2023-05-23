@@ -3,61 +3,49 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-23 21:17:26
+ * @LastEditTime: 2023-05-23 21:55:31
 -->
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
-import { computed, reactive, ref } from 'vue'
+import { Ref, computed, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
+import useUserStore from '@/store/modules/user'
+import Identify from '@/components/VerifyCode/index.vue'
 // VerifyCode import
-import image1 from '@/assets/images/verifyCode/0050.png'
-import image2 from '@/assets/images/verifyCode/0254.png'
-import image3 from '@/assets/images/verifyCode/1580.png'
-import image4 from '@/assets/images/verifyCode/2927.png'
-import image5 from '@/assets/images/verifyCode/3812.png'
-import image6 from '@/assets/images/verifyCode/4294.png'
-import image7 from '@/assets/images/verifyCode/6061.png'
-import image8 from '@/assets/images/verifyCode/6102.png'
-import image9 from '@/assets/images/verifyCode/8322.png'
-import image10 from '@/assets/images/verifyCode/9041.png'
 
 let $router = useRouter()
 let $route = useRoute()
 let loading = ref(false)
-import useUserStore from '@/store/modules/user'
+
+const identifyCode = ref()
+const identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz')
+
+// 重置验证码
+const refreshCode = () => {
+  identifyCode.value = ''
+  makeCode(identifyCode, 4)
+}
+
+const makeCode = (o: Ref<any>, l: number) => {
+  for (let i = 0; i < l; i++) {
+    identifyCode.value +=
+      identifyCodes.value[randomNum(0, identifyCodes.value.length)]
+  }
+}
+
+const randomNum = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 let useStore = useUserStore()
 let loginForms = ref()
 
-const currentCodeImageIndex = ref(0)
-
-const codeImageUrls = [
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-  image7,
-  image8,
-  image9,
-  image10,
-  // 添加其他验证码图片的路径
-]
-
-const codeImageUrl = computed(() => {
-  return codeImageUrls[currentCodeImageIndex.value]
-})
-
-const refreshCodeImages = () => {
-  currentCodeImageIndex.value =
-    (currentCodeImageIndex.value + 1) % codeImageUrls.length
-}
 const loginForm = reactive({
   username: 'admin',
   password: 'atguigu123',
-  verifyCode: '',
+  verifyCode: '1234',
 })
 
 const validatorUsername = (rule: any, value: any, callback: any) => {
@@ -79,17 +67,14 @@ const validatorPassword = (rule: any, value: any, callback: any) => {
 }
 
 const validatorVerifyCode = (rule: any, value: any, callback: any) => {
-  const tmp: { value: string } = codeImageUrl
-
-  const actualCode = tmp.value?.match(/\/(\d+)\.png$/)?.[1]
-
+  console.log('identifyCode.value', identifyCode.value)
   if (value.length === 0) {
     callback(new Error('请输入验证码'))
   } else if (value.length < 4) {
     callback(new Error('请输入正确的验证码'))
-  } else if (actualCode !== value) {
+  } else if (identifyCode.value !== value) {
     callback(new Error('请输入正确的验证码'))
-  } else if (actualCode === value) {
+  } else if (identifyCode.value === value) {
     callback()
   }
 }
@@ -175,14 +160,10 @@ const rules = {
                 v-model="loginForm.verifyCode"
                 placeholder="VerifyCode"
                 size="large"
+                maxlength="4"
               >
                 <template #append>
-                  <img
-                    :src="(codeImageUrl as unknown as string)"
-                    alt="验证码"
-                    style="cursor: pointer"
-                    @click="refreshCodeImages"
-                  />
+                  <Identify :identifyCode="identifyCode" @click="refreshCode" />
                 </template>
               </el-input>
             </el-form-item>

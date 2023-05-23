@@ -33,5 +33,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Src: typeof import('./src/components/Pagination/src/index.vue')['default']
+    VerifyCode: typeof import('./src/components/VerifyCode/index.vue')['default']
   }
 }
