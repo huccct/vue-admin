@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-23 21:55:31
+ * @LastEditTime: 2023-05-23 22:02:06
 -->
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
@@ -19,7 +19,7 @@ let $router = useRouter()
 let $route = useRoute()
 let loading = ref(false)
 
-const identifyCode = ref()
+const identifyCode = ref('1234')
 const identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz')
 
 // 重置验证码
@@ -67,7 +67,8 @@ const validatorPassword = (rule: any, value: any, callback: any) => {
 }
 
 const validatorVerifyCode = (rule: any, value: any, callback: any) => {
-  console.log('identifyCode.value', identifyCode.value)
+  console.log(value, identifyCode.value)
+
   if (value.length === 0) {
     callback(new Error('请输入验证码'))
   } else if (value.length < 4) {
