@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-22 22:06:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-23 15:24:37
+ * @LastEditTime: 2023-05-23 21:18:54
  */
 import router from '@/router'
 import setting from './setting'
@@ -30,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
           await userStore.userInfo()
           next()
         } catch (error) {
-          userStore.userLogout()
+          await userStore.userLogout()
           next({ path: '/login', query: { redirect: to.path } })
         }
       }

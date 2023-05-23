@@ -3,9 +3,9 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-21 22:47:25
+ * @LastEditTime: 2023-05-23 20:56:22
  */
-import { ConfigEnv, UserConfigExport } from 'vite'
+import { ConfigEnv, UserConfigExport, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -17,7 +17,9 @@ import path from 'path'
 // 引入svg
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
-export default ({ command }: ConfigEnv): UserConfigExport => {
+export default ({ command, mode }: ConfigEnv): UserConfigExport => {
+  // 获取各种环境下对应的变量
+  let env = loadEnv(mode, process.cwd())
   return {
     base: '/vue-admin/',
     plugins: [
@@ -44,6 +46,17 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         scss: {
           javascriptEnabled: true,
           additionalData: '@import "./src/styles/variable.scss";',
+        },
+      },
+    },
+    // 代理跨域
+    server: {
+      proxy: {
+        [env.VITE_APP_BASE_API]: {
+          target: env.VITE_SERVE,
+          // 需要代理跨域
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
         },
       },
     },

@@ -3,38 +3,30 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:16:03
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-20 16:27:04
+ * @LastEditTime: 2023-05-23 21:32:17
  */
 // 登录接口需要携带参数ts类型
-export interface LoginForm {
+export interface LoginFormData {
   username?: string
   password?: string
 }
-interface dataType {
-  token?: string
+
+export interface ResponseData {
+  code?: number
   message?: string
-}
-export interface LoginResponseData {
-  code?: number
-  data?: dataType
+  ok?: boolean
 }
 
-interface userInfo {
-  userId?: number
-  avatar?: string
-  username?: string
-  password: string
-  desc?: string
-  roles?: string[]
-  buttons?: string[]
-  routes?: string[]
-  token?: string
+export interface LoginResponseData extends ResponseData {
+  data?: string
 }
 
-interface user {
-  checkUser?: userInfo
-}
-export interface UserResponseData {
-  code?: number
-  data?: user
+export interface userInfoResponseData extends ResponseData {
+  data: {
+    routes: string[]
+    buttons: string[]
+    roles: string[]
+    name: string
+    avatar: string
+  }
 }

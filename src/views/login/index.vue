@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-22 21:40:08
+ * @LastEditTime: 2023-05-23 21:17:26
 -->
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
@@ -49,7 +49,6 @@ const codeImageUrls = [
 const codeImageUrl = computed(() => {
   return codeImageUrls[currentCodeImageIndex.value]
 })
-// console.log(codeImageUrls[0])
 
 const refreshCodeImages = () => {
   currentCodeImageIndex.value =
@@ -57,7 +56,7 @@ const refreshCodeImages = () => {
 }
 const loginForm = reactive({
   username: 'admin',
-  password: '123456',
+  password: 'atguigu123',
   verifyCode: '',
 })
 

@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 21:33:11
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-22 21:28:31
+ * @LastEditTime: 2023-05-23 21:17:54
 -->
 <script setup lang="ts">
 import {
@@ -32,8 +32,8 @@ const fullScreen = () => {
   }
 }
 
-const logout = () => {
-  userStore.userLogout()
+const logout = async () => {
+  await userStore.userLogout()
   $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
