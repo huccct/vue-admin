@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:54
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-22 20:44:30
+ * @LastEditTime: 2023-05-24 10:19:00
 -->
 <script setup lang="ts">
 import { onMounted } from 'vue'
@@ -16,6 +16,6 @@ onMounted(() => {
 })
 </script>
 <template>
-  <h1>qweqweqweqweqweqwe</h1>
+  <h1></h1>
 </template>
 <style lang="scss" scoped></style>
