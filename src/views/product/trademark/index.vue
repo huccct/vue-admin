@@ -3,15 +3,20 @@
  * @Author: Huccct
  * @Date: 2023-05-21 16:19:15
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-24 16:08:56
+ * @LastEditTime: 2023-05-24 20:56:32
 -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { reqHasTradeMark } from '@/api/product/trademark'
+import { ref, onMounted, reactive } from 'vue'
+import {
+  reqHasTradeMark,
+  reqAddOrUpdateTrademark,
+} from '@/api/product/trademark'
 import type {
   Records,
+  TradeMark,
   TradeMarkResponseData,
 } from '@/api/product/trademark/type'
+import { UploadProps } from 'element-plus/es/components/upload/src/upload'
 let pageNo = ref<number>(1)
 
 let limit = ref<number>(3)
@@ -19,6 +24,11 @@ let total = ref<number>(0)
 let dialogFormVisible = ref<boolean>(false)
 
 let tradeMarkArr = ref<Records>([])
+
+let trademarkParams = reactive<TradeMark>({
+  tmName: '',
+  logoUrl: '',
+})
 const getHasTradeMark = async (pager = 1) => {
   pageNo.value = pager
   let res: TradeMarkResponseData = await reqHasTradeMark(
@@ -41,17 +51,65 @@ const sizeChange = () => {
 
 const addTradeMark = () => {
   dialogFormVisible.value = true
+  trademarkParams.id = 0
+  trademarkParams.tmName = ''
+  trademarkParams.logoUrl = ''
 }
-const updateTradeMark = () => {
+
+const updateTradeMark = (row: TradeMark) => {
   dialogFormVisible.value = true
+  Object.assign(trademarkParams, row)
 }
 
 const cancel = () => {
   dialogFormVisible.value = false
 }
 
-const confirm = () => {
-  dialogFormVisible.value = false
+const confirm = async () => {
+  let res = await reqAddOrUpdateTrademark(trademarkParams)
+  if (res.code === 200) {
+    dialogFormVisible.value = false
+    ElMessage({
+      type: 'success',
+      message: trademarkParams.id ? '修改品牌成功' : '添加品牌成功',
+    })
+    getHasTradeMark(trademarkParams.id ? pageNo.value : 1)
+  } else {
+    ElMessage({
+      type: 'error',
+      message: trademarkParams.id ? '修改品牌失败' : '添加品牌失败',
+    })
+  }
+}
+
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+  if (
+    rawFile.type === 'image/png' ||
+    rawFile.type === 'image/jpeg' ||
+    rawFile.type === 'image/gif'
+  ) {
+    if (rawFile.size / 1024 / 1024 < 4) {
+      return true
+    } else {
+      ElMessage({
+        type: 'error',
+        message: '上传的文件大小应小于4M',
+      })
+    }
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '上传的文件类型必须是PNG|JPG|GIF',
+    })
+    return false
+  }
+}
+
+const handleAvatarSuccess: UploadProps['onSuccess'] = (
+  response,
+  uploadFile,
+) => {
+  trademarkParams.logoUrl = response.data
 }
 </script>
 <template>
@@ -83,7 +141,7 @@ const confirm = () => {
             type="primary"
             size="small"
             icon="Edit"
-            @click="updateTradeMark"
+            @click="updateTradeMark(row)"
           ></el-button>
           <el-button type="danger" size="small" icon="Delete"></el-button>
         </template>
@@ -103,20 +161,30 @@ const confirm = () => {
     />
   </el-card>
 
-  <el-dialog v-model="dialogFormVisible" title="添加品牌">
+  <el-dialog
+    v-model="dialogFormVisible"
+    :title="trademarkParams.id ? '修改品牌' : '添加品牌'"
+  >
     <el-form style="width: 90%">
       <el-form-item label="品牌名称" label-width="80px">
-        <el-input placeholder="请您输入品牌名称"></el-input>
+        <el-input
+          placeholder="请您输入品牌名称"
+          v-model="trademarkParams.tmName"
+        ></el-input>
       </el-form-item>
       <el-form-item label="品牌Logo" label-width="80px">
         <el-upload
           class="avatar-uploader"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+          action="/api/admin/product/fileUpload"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
         >
-          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <img
+            v-if="trademarkParams.logoUrl"
+            :src="trademarkParams.logoUrl"
+            class="avatar"
+          />
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
         </el-upload>
       </el-form-item>
