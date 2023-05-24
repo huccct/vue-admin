@@ -1,1 +1,0 @@
-import{y as n,aF as o,N as t,E as r,F as s}from"./index-a4fe9c01.js";const l=n({__name:"index",setup(a){let e=o();return t(()=>{e.userInfo()}),(u,c)=>(r(),s("h1",null,"qweqweqweqweqweqwe"))}});export{l as default};
