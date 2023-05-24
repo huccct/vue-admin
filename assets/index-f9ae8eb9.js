@@ -1,1 +1,0 @@
-import{d as o,o as t,C as s,a2 as _,a3 as c,z as a,U as n}from"./index-82f8feb3.js";const d=e=>(_("data-v-6f7c1023"),e=e(),c(),e),p=d(()=>a("h1",null,"attr",-1)),l=[p],r=o({__name:"index",setup(e){return console.log(1111),(i,u)=>(t(),s("div",null,l))}});const x=n(r,[["__scopeId","data-v-6f7c1023"]]);export{x as default};
