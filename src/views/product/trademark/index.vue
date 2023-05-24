@@ -3,13 +3,14 @@
  * @Author: Huccct
  * @Date: 2023-05-21 16:19:15
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-24 21:29:10
+ * @LastEditTime: 2023-05-24 22:17:52
 -->
 <script setup lang="ts">
 import { ref, onMounted, reactive, nextTick } from 'vue'
 import {
   reqHasTradeMark,
   reqAddOrUpdateTrademark,
+  reqDeleteTrademark,
 } from '@/api/product/trademark'
 import type {
   Records,
@@ -157,6 +158,26 @@ const rules = {
     },
   ],
 }
+
+const removeTradeMark = async (id: number) => {
+  let res = await reqDeleteTrademark(id)
+
+  if (res.code === 200) {
+    ElMessage({
+      type: 'success',
+      message: '删除品牌成功',
+    })
+    //再次获取已有的品牌数据
+    getHasTradeMark(
+      tradeMarkArr.value.length > 1 ? pageNo.value : pageNo.value - 1,
+    )
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '删除品牌失败',
+    })
+  }
+}
 </script>
 <template>
   <el-card class="box-card">
@@ -189,7 +210,16 @@ const rules = {
             icon="Edit"
             @click="updateTradeMark(row)"
           ></el-button>
-          <el-button type="danger" size="small" icon="Delete"></el-button>
+          <el-popconfirm
+            :title="`您确定删除${row.tmName}`"
+            width="250px"
+            icon="delete"
+            @confirm="removeTradeMark(row.id)"
+          >
+            <template #reference>
+              <el-button type="danger" size="small" icon="Delete"></el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
