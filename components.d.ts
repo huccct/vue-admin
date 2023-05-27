@@ -38,10 +38,11 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Src: typeof import('./src/components/Pagination/src/index.vue')['default']
+    Src: typeof import('./src/components/Category/src/index.vue')['default']
     VerifyCode: typeof import('./src/components/VerifyCode/index.vue')['default']
   }
 }

@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 20:25:03
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-24 10:47:52
+ * @LastEditTime: 2023-05-26 21:50:47
 -->
 <script setup lang="ts">
 import Logo from './logo/index.vue'
@@ -40,7 +40,7 @@ let LayOutSettingStore = useLayOutSettingStore()
       </el-scrollbar>
     </el-aside>
 
-    <el-container>
+    <el-container class="container">
       <TabBar style="width: 100%" />
       <el-main
         :style="{
@@ -58,6 +58,9 @@ let LayOutSettingStore = useLayOutSettingStore()
   </el-container>
 </template>
 <style lang="scss" scoped>
+.layout-container-demo {
+  height: 100%;
+}
 .layout-container-demo .el-menu {
   border-right: none;
 }
@@ -68,6 +71,7 @@ let LayOutSettingStore = useLayOutSettingStore()
   top: 60px;
   transition: all 0.3s;
   width: calc(100% - $base-menu-width);
+  height: calc(100vh - 60px);
 }
 
 .el-aside {
@@ -77,6 +81,7 @@ let LayOutSettingStore = useLayOutSettingStore()
 .el-header {
   background-color: #fff !important;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  z-index: 999;
 }
 .isCollapse {
   width: 56px;
