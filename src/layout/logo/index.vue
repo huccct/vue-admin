@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 20:34:50
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-26 21:48:33
+ * @LastEditTime: 2023-05-29 09:35:48
 -->
 <script setup lang="ts">
 import setting from '@/setting'
@@ -25,7 +25,7 @@ import setting from '@/setting'
   font-size: $base-logo-title-fontSize;
   flex-wrap: nowrap;
   overflow: hidden;
-  padding-left: 20px;
+  padding-left: 17px;
   img {
     display: inline-block;
     widows: 30px;

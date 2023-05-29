@@ -1,3 +1,10 @@
+<!--
+ * @Description: Stay hungry，Stay foolish
+ * @Author: Huccct
+ * @Date: 2023-05-21 10:06:22
+ * @LastEditors: Huccct
+ * @LastEditTime: 2023-05-29 09:33:24
+-->
 <script setup lang="ts" name="Menu">
 defineProps(['menuList'])
 </script>
@@ -43,13 +50,4 @@ defineProps(['menuList'])
     </el-sub-menu>
   </template>
 </template>
-<style lang="scss" scoped>
-.el-menu-item {
-  width: 95%;
-  margin: 0 auto;
-}
-.el-sub-menu {
-  width: 95%;
-  margin: 0 auto;
-}
-</style>
+<style lang="scss" scoped></style>
