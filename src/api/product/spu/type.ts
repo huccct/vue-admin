@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-28 11:06:52
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-28 21:44:00
+ * @LastEditTime: 2023-05-29 17:12:21
  */
 export interface ResponseData {
   code: number
@@ -95,4 +95,31 @@ export interface HasSaleAttr {
 
 export interface HasSaleAttrResponseData extends ResponseData {
   data: HasSaleAttr[]
+}
+
+export interface Attr {
+  attrId: number | string
+  valueId: number | string
+}
+
+export interface saleAttr {
+  saleAttrId: number | string
+  saleAttrValueId: number | string
+}
+
+export interface SkuData {
+  category3Id: string | number //三级分类的ID
+  spuId: string | number //已有的SPU的ID
+  tmId: string | number //SPU品牌的ID
+  skuName: string //sku名字
+  price: string | number //sku价格
+  weight: string | number //sku重量
+  skuDesc: string //sku的描述
+  skuAttrValueList?: Attr[]
+  skuSaleAttrValueList?: saleAttr[]
+  skuDefaultImg: string //sku图片地址
+}
+
+export interface SkuInfoData extends ResponseData {
+  data: SkuData[]
 }
