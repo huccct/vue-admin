@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-21 16:19:04
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-30 18:42:16
+ * @LastEditTime: 2023-05-31 19:59:01
 -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -83,12 +83,13 @@ const removeSku = async (id: number) => {
 </script>
 <template>
   <el-card>
-    <el-table border style="margin: 10px 0" :data="skuArr">
+    <el-table border style="margin: 10px 0; width: 100%" :data="skuArr">
       <el-table-column
         label="序号"
         type="index"
         align="center"
         width="80px"
+        fixed
       ></el-table-column>
       <el-table-column
         label="名称"
@@ -99,10 +100,10 @@ const removeSku = async (id: number) => {
       <el-table-column
         label="描述"
         show-overflow-tooltip
-        width="150px"
+        width="350px"
         prop="skuDesc"
       ></el-table-column>
-      <el-table-column label="图片" width="150px">
+      <el-table-column label="图片" width="250px">
         <template #="{ row, $index }">
           <img
             :src="row.skuDefaultImg"
