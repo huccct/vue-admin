@@ -12,6 +12,7 @@ import 'virtual:svg-icons-register'
 // 引入自定义插件对象：注册整个项目全局组件
 import globalComponent from '@/components/index'
 import 'element-plus/theme-chalk/el-notification.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/index.scss'
 import router from './router'
 import pinia from './store'
