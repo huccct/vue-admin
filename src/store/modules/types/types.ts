@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 16:28:00
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-26 20:05:13
+ * @LastEditTime: 2023-06-02 11:27:45
  */
 import type { RouteRecordRaw } from 'vue-router'
 import type { CategoryObj } from '@/api/product/attr/type'
@@ -12,6 +12,7 @@ export interface UserState {
   menuRoutes: RouteRecordRaw[]
   username: string
   avatar: string
+  buttons: string[]
 }
 
 export interface CategoryState {

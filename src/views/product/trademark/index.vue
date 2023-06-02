@@ -3,10 +3,11 @@
  * @Author: Huccct
  * @Date: 2023-05-21 16:19:15
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-24 22:17:52
+ * @LastEditTime: 2023-06-02 11:35:45
 -->
 <script setup lang="ts">
 import { ref, onMounted, reactive, nextTick } from 'vue'
+
 import {
   reqHasTradeMark,
   reqAddOrUpdateTrademark,
@@ -18,6 +19,7 @@ import type {
   TradeMarkResponseData,
 } from '@/api/product/trademark/type'
 import { UploadProps } from 'element-plus/es/components/upload/src/upload'
+
 let pageNo = ref<number>(1)
 
 let limit = ref<number>(3)
@@ -182,7 +184,13 @@ const removeTradeMark = async (id: number) => {
 <template>
   <el-card class="box-card">
     <!-- 添加品牌 -->
-    <el-button type="primary" size="default" icon="Plus" @click="addTradeMark">
+    <el-button
+      type="primary"
+      size="default"
+      icon="Plus"
+      @click="addTradeMark"
+      v-has="`btn.Trademark.add`"
+    >
       添加品牌
     </el-button>
     <el-table style="margin: 10px 0" border :data="tradeMarkArr">

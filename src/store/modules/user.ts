@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-20 10:58:16
  * @LastEditors: Huccct
- * @LastEditTime: 2023-06-02 10:41:14
+ * @LastEditTime: 2023-06-02 11:27:32
  */
 import { defineStore } from 'pinia'
 import router from '@/router'
@@ -39,6 +39,7 @@ let useUserStore = defineStore('User', {
       menuRoutes: constantRoute,
       username: '',
       avatar: '',
+      buttons: [],
     }
   },
   // 异步|逻辑的地方

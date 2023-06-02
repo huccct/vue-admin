@@ -6,7 +6,7 @@
  * @LastEditTime: 2023-06-02 11:22:09
 -->
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 let $router = useRouter()
 const goHome = () => {
   $router.push('/home')
