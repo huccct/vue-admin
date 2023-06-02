@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:46:49
  * @LastEditors: Huccct
- * @LastEditTime: 2023-05-22 21:14:20
+ * @LastEditTime: 2023-06-02 10:33:35
  */
 export const constantRoute = [
   {
@@ -48,6 +48,18 @@ export const constantRoute = [
     },
   },
   {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404',
+    meta: {
+      title: '404',
+      hidden: true,
+    },
+  },
+]
+
+export const asyncRoute = [
+  {
     path: '/acl',
     component: () => import('@/layout/index.vue'),
     name: 'Acl',
@@ -89,15 +101,6 @@ export const constantRoute = [
         },
       },
     ],
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    name: '404',
-    meta: {
-      title: '404',
-      hidden: true,
-    },
   },
   {
     path: '/product',
@@ -152,13 +155,14 @@ export const constantRoute = [
       },
     ],
   },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/404',
-    name: 'Any',
-    meta: {
-      title: '任意路由',
-      hidden: true,
-    },
-  },
 ]
+
+export const anyRoute = {
+  path: '/:pathMatch(.*)*',
+  redirect: '/404',
+  name: 'Any',
+  meta: {
+    title: '任意路由',
+    hidden: true,
+  },
+}
