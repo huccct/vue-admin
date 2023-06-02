@@ -6,6 +6,7 @@ specifiers:
   '@commitlint/cli': ^17.6.3
   '@commitlint/config-conventional': ^17.6.3
   '@element-plus/icons-vue': ^2.1.0
+  '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.59.6
   '@typescript-eslint/parser': ^5.59.6
   '@vitejs/plugin-vue': ^4.1.0
@@ -73,6 +74,7 @@ devDependencies:
   '@babel/eslint-parser': registry.npmmirror.com/@babel/eslint-parser/7.21.8_r3wtitw7f7lufgjigaj6hnnlnu
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/17.6.3
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/17.6.3
+  '@types/nprogress': registry.npmmirror.com/@types/nprogress/0.2.0
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.59.6_hrzo544y7ygaq2nap7kmpxcgnm
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.59.6_3qfatcekpgbllh6uk5ivyhkbxq
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/4.2.3_vite@4.3.7+vue@3.3.2
@@ -1192,6 +1194,12 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz}
     name: '@types/normalize-package-data'
     version: 2.4.1
+    dev: true
+
+  registry.npmmirror.com/@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/nprogress/-/nprogress-0.2.0.tgz}
+    name: '@types/nprogress'
+    version: 0.2.0
     dev: true
 
   registry.npmmirror.com/@types/semver/7.5.0:

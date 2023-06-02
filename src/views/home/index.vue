@@ -3,11 +3,11 @@
  * @Author: Huccct
  * @Date: 2023-05-19 17:38:54
  * @LastEditors: Huccct
- * @LastEditTime: 2023-06-01 20:24:30
+ * @LastEditTime: 2023-06-02 15:09:08
 -->
 <script setup lang="ts">
-import useUserStore from '@/store/modules/user'
 import { getTime } from '@/utils/time'
+import useUserStore from '@/store/modules/user'
 let userStore = useUserStore()
 </script>
 <template>
