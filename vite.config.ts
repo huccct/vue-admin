@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-06-02 16:05:59
+ * @LastEditTime: 2023-06-02 17:37:30
  */
 import { ConfigEnv, UserConfigExport, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -21,7 +21,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   // 获取各种环境下对应的变量
   let env = loadEnv(mode, process.cwd())
   return {
-    base: '/vue-admin/',
+    base: './',
     plugins: [
       VueSetupExtend(),
       DefineOptions(),
