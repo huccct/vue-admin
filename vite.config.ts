@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-06-02 15:54:59
+ * @LastEditTime: 2023-06-02 16:05:59
  */
 import { ConfigEnv, UserConfigExport, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -51,7 +51,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     // 代理跨域
     server: {
-      https: true,
       proxy: {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_SERVE,
