@@ -1,18 +1,38 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">
+    <img src="https://img1.imgtp.com/2023/06/02/dih93Zck.png" alt="Logo">
+</h1>
+<p align="center">
+    <a href="https://github.com/vuejs/vue">
+      <img src="https://img.shields.io/badge/vue-3.2.47-brightgreen" alt="vue">
+    </a>
+    <a href="https://github.com/ElemeFE/element">
+      <img src="https://img.shields.io/badge/element--plus-2.3.4-brightgreen" alt="element-plus">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/github/stars/huccct/vue-admin">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/github/license/huccct/vue-admin">
+    </a>
+</p>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 使用仓库相关命令
 
-## Recommended IDE Setup
+### 安装 pnpm
+```
+npm i pnpm -g
+```
+### 安装所有依赖
+```
+pnpm install
+```
+### 启动本地测试项目
+```
+pnpm run dev
+```
+### 打包
+```
+pnpm run build
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
