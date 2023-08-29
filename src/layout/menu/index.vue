@@ -21,8 +21,10 @@ defineProps(['menuList'])
         </template>
       </el-menu-item>
     </template>
-    <!-- 有子路由但只有一个 -->
-    <template v-if="item.children && item.children.length === 1">
+    <!-- 有子路由但只有一个 --home -->
+    <template
+      v-if="item.children && item.children.length === 1 && item.path === '/'"
+    >
       <el-menu-item
         v-if="!item.children[0].meta.hidden"
         :index="item.children[0].path"
@@ -34,6 +36,31 @@ defineProps(['menuList'])
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
+    </template>
+    <!-- 有子路由但只有一个 --not home -->
+    <template
+      v-if="item.children && item.children.length === 1 && item.path !== '/'"
+    >
+      <el-sub-menu :index="item.path">
+        <template #title>
+          <el-icon>
+            <component :is="item.meta.icon"></component>
+          </el-icon>
+          <span>{{ item.meta.title }}</span>
+        </template>
+
+        <el-menu-item
+          v-if="!item.children[0].meta.hidden"
+          :index="item.children[0].path"
+        >
+          <el-icon>
+            <component :is="item.children[0].meta.icon"></component>
+          </el-icon>
+          <template #title>
+            <span>{{ item.children[0].meta.title }}</span>
+          </template>
+        </el-menu-item>
+      </el-sub-menu>
     </template>
     <!-- 有子路由且大于一个 -->
     <el-sub-menu
