@@ -37,6 +37,7 @@ export const constantRoute = [
       },
     ],
   },
+
   {
     path: '/screen',
     component: () => import('@/views/screen/index.vue'),
