@@ -30,53 +30,68 @@ onMounted(() => {
   let mycharts = echarts.init(charts.value)
   //设置配置项
   mycharts.setOption({
-    //组件标题
-    title: {
-      text: '男女比例', //主标题
-      textStyle: {
-        //主标题颜色
-        color: 'skyblue',
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        // Use axis to trigger tooltip
+        type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
       },
-      left: '40%',
+      formatter: '{a0}: {c0}%<br />{a1}: {c1}%',
     },
-    //x|y
     xAxis: {
       show: false,
       min: 0,
       max: 100,
+      type: 'value',
     },
     yAxis: {
       show: false,
       type: 'category',
+      data: ['人数比例'],
     },
     series: [
       {
+        name: '男士',
+        stack: 'total',
+        data: [48],
         type: 'bar',
-        data: [58],
         barWidth: 20,
-        z: 100,
         itemStyle: {
-          color: 'skyblue',
-          borderRadius: 20,
+          color: '#29fcff',
+          borderRadius: [10, 0, 0, 10],
+        },
+        label: {
+          show: true,
+          formatter: '{c}%',
+        },
+        emphasis: {
+          focus: 'series',
         },
       },
       {
+        name: '女士',
+        stack: 'total',
+        data: [52],
         type: 'bar',
-        data: [100],
         barWidth: 20,
-        //调整女士柱条位置
-        barGap: '-100%',
         itemStyle: {
-          color: 'pink',
-          borderRadius: 20,
+          color: '#ff6c6c',
+          borderRadius: [0, 10, 10, 0],
+        },
+        label: {
+          show: true,
+          formatter: '{c}%',
+        },
+        emphasis: {
+          focus: 'series',
         },
       },
     ],
     grid: {
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 0,
+      left: '0%',
+      right: '0%',
+      bottom: '0%',
+      top: '0%',
     },
   })
 })
@@ -128,10 +143,13 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     color: white;
+    padding: 0 20px;
   }
 
   .charts {
     height: 100px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
   }
 }
 </style>
