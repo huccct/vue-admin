@@ -20,6 +20,8 @@ import { constantRoute, asyncRoute, anyRoute } from '@/router/routes'
 // @ts-ignore
 import cloneDeep from 'lodash/cloneDeep'
 
+let dynamicRoutes = []
+
 function filterAsyncRoute(asyncRoute: any, routes: any) {
   return asyncRoute.filter((item: any) => {
     if (routes.includes(item.name)) {
@@ -64,16 +66,15 @@ let useUserStore = defineStore('User', {
       if (res.code === 200) {
         this.username = res.data.name as string
         this.avatar = res.data.avatar as string
+
         let userAsyncRoute = filterAsyncRoute(
           cloneDeep(asyncRoute),
           res.data.routes,
         )
         this.menuRoutes = [...constantRoute, ...userAsyncRoute, anyRoute]
-        ;[...userAsyncRoute, anyRoute].forEach((route: any) => {
-          console.log(route)
-
-          router.addRoute(route)
-          console.log('router', router)
+        dynamicRoutes = [...userAsyncRoute, anyRoute] // 记录动态添加的路由
+        dynamicRoutes.forEach((route) => {
+          router.addRoute(route) // 动态添加路由
         })
         return 'ok'
       } else {
@@ -87,6 +88,9 @@ let useUserStore = defineStore('User', {
         this.username = ''
         this.avatar = ''
         REMOVE_TOKEN()
+        dynamicRoutes.forEach((route) => {
+          router.removeRoute(route.name)
+        })
       } else {
         return Promise.reject(new Error(res.message))
       }
