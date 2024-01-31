@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://img1.imgtp.com/2023/06/02/dih93Zck.png" alt="Logo">
+    Vue-Admin
 </h1>
 <p align="center">
     <a href="https://github.com/vuejs/vue">
