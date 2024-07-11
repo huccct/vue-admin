@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
+    "baseUrl": "./",
     "paths": {
-      //路径映射，相对于baseUrl
       "@/*": ["src/*"]
     },
     "types": [
@@ -15,8 +14,6 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -25,8 +22,6 @@
     "noEmit": true,
     "jsx": "preserve",
     "sourceMap": true,
-
-    /* Linting */
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,

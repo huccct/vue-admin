@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-//@ts-ignore
 import moment from 'moment'
 //点击首页按钮回到首页
 import { useRouter } from 'vue-router'
@@ -97,6 +96,7 @@ onBeforeUnmount(() => {
       text-align: center;
       line-height: 40px;
       color: #29fcff;
+      font-size: 20px;
       cursor: pointer;
     }
 

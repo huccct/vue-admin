@@ -8,6 +8,7 @@
 import { defineStore } from 'pinia'
 import router from '@/router'
 import { reqLogin, reqUserInfo, reqLogOut } from '@/api/user'
+import { RouteRecordRaw } from 'vue-router'
 import type {
   LoginFormData,
   LoginResponseData,
@@ -17,10 +18,11 @@ import type { UserState } from './types/types'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 import { constantRoute, asyncRoute, anyRoute } from '@/router/routes'
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import cloneDeep from 'lodash/cloneDeep'
 
-let dynamicRoutes = []
+let dynamicRoutes: RouteRecordRaw[] = []
 
 function filterAsyncRoute(asyncRoute: any, routes: any) {
   return asyncRoute.filter((item: any) => {
@@ -33,7 +35,7 @@ function filterAsyncRoute(asyncRoute: any, routes: any) {
   })
 }
 
-let useUserStore = defineStore('User', {
+const useUserStore = defineStore('User', {
   // 小仓库存储数据的地方
   state: (): UserState => {
     return {
@@ -48,7 +50,7 @@ let useUserStore = defineStore('User', {
   actions: {
     //用户登录方法
     async userLogin(data: LoginFormData) {
-      let res: LoginResponseData = await reqLogin(data)
+      const res: LoginResponseData = await reqLogin(data)
       // success=>token
       // error=>error.message
       if (res.code === 200) {
@@ -61,13 +63,13 @@ let useUserStore = defineStore('User', {
       }
     },
     async userInfo() {
-      let res: userInfoResponseData = await reqUserInfo()
+      const res: userInfoResponseData = await reqUserInfo()
 
       if (res.code === 200) {
         this.username = res.data.name as string
         this.avatar = res.data.avatar as string
 
-        let userAsyncRoute = filterAsyncRoute(
+        const userAsyncRoute = filterAsyncRoute(
           cloneDeep(asyncRoute),
           res.data.routes,
         )
@@ -82,14 +84,16 @@ let useUserStore = defineStore('User', {
       }
     },
     async userLogout() {
-      let res = await reqLogOut()
+      const res = await reqLogOut()
       if (res.code === 200) {
         this.token = ''
         this.username = ''
         this.avatar = ''
         REMOVE_TOKEN()
         dynamicRoutes.forEach((route) => {
-          router.removeRoute(route.name)
+          if (route.name) {
+            router.removeRoute(route.name)
+          }
         })
       } else {
         return Promise.reject(new Error(res.message))
