@@ -86,4 +86,30 @@ let LayOutSettingStore = useLayOutSettingStore()
 .isCollapse {
   width: 56px;
 }
+
+@media screen and (max-width: 768px) {
+  .el-aside {
+    position: fixed;
+    left: -200px;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    &.isCollapse {
+      left: 0;
+    }
+  }
+
+  .el-main {
+    left: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .container {
+    margin-left: 0;
+  }
+}
 </style>

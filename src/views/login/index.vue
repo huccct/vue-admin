@@ -189,9 +189,9 @@ const rules = {
 .login_container {
   width: 100%;
   height: 100vh;
-  background: url('@/assets/images/background.jpg') no-repeat;
   background-size: cover;
   position: fixed;
+  background: url('@/assets/images/background.jpg') no-repeat;
   .login_form {
     position: relative;
     width: 55%;
@@ -199,6 +199,7 @@ const rules = {
     left: 10vw;
     padding: 10px;
     background: transparent;
+
     h1 {
       background: linear-gradient(to right, blue, rgb(35, 60, 70));
       -webkit-background-clip: text;
@@ -209,15 +210,45 @@ const rules = {
       margin-bottom: 40px;
       margin-top: -10px;
     }
+
     .login_btn {
       width: 100%;
     }
   }
 }
+
 .el-card {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 :deep(.el-input-group__append, .el-input-group__prepend) {
   padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .login_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .login_form {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      position: static;
+      top: auto;
+      left: auto;
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        margin-top: 0;
+      }
+    }
+  }
 }
 </style>
