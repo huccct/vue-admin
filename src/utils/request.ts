@@ -9,14 +9,14 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user'
-let request = axios.create({
+const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
 })
 
 request.interceptors.request.use(
   (config) => {
-    let userStore = useUserStore()
+    const userStore = useUserStore()
 
     if (userStore.token) {
       config.headers.token = userStore.token
@@ -39,7 +39,7 @@ request.interceptors.response.use(
   },
   (error) => {
     let message = ''
-    let status = error.response.status
+    const status = error.response.status
     switch (status) {
       // 401: 未登录
       // 未登录则跳转登录页面，并携带当前页面的路径

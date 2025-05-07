@@ -3,7 +3,7 @@
  * @Author: Huccct
  * @Date: 2023-05-17 14:32:02
  * @LastEditors: Huccct
- * @LastEditTime: 2023-06-02 17:37:30
+ * @LastEditTime: 2024-03-21
  */
 import { ConfigEnv, UserConfigExport, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -19,7 +19,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   // 获取各种环境下对应的变量
-  let env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd())
   return {
     base: './',
     plugins: [
@@ -38,6 +38,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       }),
       viteMockServe({
         localEnabled: command === 'serve',
+        mockPath: 'mock',
+        supportTs: true,
+        logger: true,
       }),
     ],
     resolve: { alias: { '@': path.resolve('./src') } },
@@ -53,8 +56,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     server: {
       proxy: {
         [env.VITE_APP_BASE_API]: {
-          target: env.VITE_SERVE,
-          // 需要代理跨域
+          target: env.VITE_MOCK_SERVE,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

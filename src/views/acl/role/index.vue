@@ -138,6 +138,7 @@ const defaultProps = {
 }
 
 const filterSelectArr = (allData: any, initArr: any) => {
+  if (!Array.isArray(allData)) return initArr
   allData.forEach((item: any) => {
     if (item.select && item.level === 4) {
       initArr.push(item.id)

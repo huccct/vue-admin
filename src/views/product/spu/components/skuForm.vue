@@ -17,8 +17,9 @@ import type { SkuData } from '@/api/product/spu/type'
 let $emit = defineEmits(['changeScene'])
 let attrArr = ref<any>([])
 let saleArr = ref<any>([])
-let imgArr = ref<any>([])
+let imgArr = ref<any[]>([])
 let table = ref<any>()
+let selectedRow = ref<any>(null)
 let skuParams = reactive<SkuData>({
   category3Id: '',
   spuId: '',
@@ -50,23 +51,48 @@ const initSkuData = async (
   c2Id: number | string,
   spu: any,
 ) => {
+  // 重置数据
+  attrArr.value = []
+  saleArr.value = []
+  imgArr.value = []
+  selectedRow.value = null
   skuParams.category3Id = spu.category3Id
   skuParams.spuId = spu.id
   skuParams.tmId = spu.tmId
+  skuParams.skuName = ''
+  skuParams.price = ''
+  skuParams.weight = ''
+  skuParams.skuDesc = ''
+  skuParams.skuAttrValueList = []
+  skuParams.skuSaleAttrValueList = []
+  skuParams.skuDefaultImg = ''
+
   let res: any = await reqAttr(c1Id, c2Id, spu.category3Id)
   let res1: any = await reqSpuHasSaleAttr(spu.id)
   let res2: any = await reqSpuImageList(spu.id)
-  attrArr.value = res.data
-  saleArr.value = res1.data
-  imgArr.value = res2.data
+
+  if (Array.isArray(res.data)) {
+    attrArr.value = res.data
+  }
+  if (Array.isArray(res1.data)) {
+    saleArr.value = res1.data
+  }
+  if (Array.isArray(res2.data)) {
+    imgArr.value = res2.data
+  }
 }
 
 const handler = (row: any) => {
-  imgArr.value.forEach((item: any) => {
-    table.value.toggleRowSelection(item, false)
-  })
-  table.value.toggleRowSelection(row, true)
+  if (!Array.isArray(imgArr.value) || !table.value) return
+  selectedRow.value = row
   skuParams.skuDefaultImg = row.imgUrl
+}
+
+const handleSelectionChange = (selection: any[]) => {
+  if (selection.length > 0) {
+    const row = selection[0]
+    handler(row)
+  }
 }
 
 const save = async () => {
@@ -176,22 +202,32 @@ defineExpose({
       </el-form>
     </el-form-item>
     <el-form-item label="图片名称">
-      <el-table border :data="imgArr" ref="table">
+      <el-table
+        border
+        :data="imgArr"
+        ref="table"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column
           type="selection"
           width="80px"
           align="center"
         ></el-table-column>
         <el-table-column label="图片">
-          <template #="{ row, $index }">
+          <template #default="{ row }">
             <img :src="row.imgUrl" alt="" style="width: 100px; height: 100px" />
           </template>
         </el-table-column>
         <el-table-column label="名称" prop="imgName"></el-table-column>
         <el-table-column label="操作">
-          <template #="{ row, $index }">
-            <el-button type="primary" size="small" @click="handler(row)">
-              设置默认
+          <template #default="{ row }">
+            <el-button
+              type="primary"
+              size="small"
+              @click="handler(row)"
+              :disabled="selectedRow?.id === row.id"
+            >
+              {{ selectedRow?.id === row.id ? '已设为默认' : '设置默认' }}
             </el-button>
           </template>
         </el-table-column>

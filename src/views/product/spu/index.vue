@@ -83,10 +83,24 @@ const addSku = (row: SpuData) => {
 }
 
 const findSku = async (row: SpuData) => {
-  let res: SkuInfoData = await reqSkuList(row.id as number)
-  if (res.code === 200) {
-    skuArr.value = res.data
-    show.value = true
+  try {
+    let res: SkuInfoData = await reqSkuList(row.id as number)
+    if (res.code === 200 && Array.isArray(res.data)) {
+      skuArr.value = res.data
+      show.value = true
+    } else {
+      skuArr.value = []
+      ElMessage({
+        type: 'warning',
+        message: '暂无SPU数据',
+      })
+    }
+  } catch (error) {
+    skuArr.value = []
+    ElMessage({
+      type: 'error',
+      message: '获取SPU数据失败',
+    })
   }
 }
 
@@ -141,7 +155,7 @@ onBeforeUnmount(() => {
           <template #="{ row, $index }">
             <el-button
               icon="Plus"
-              title="添加SKU"
+              title="添加SPU"
               size="small"
               @click="addSku(row)"
             ></el-button>
@@ -155,7 +169,7 @@ onBeforeUnmount(() => {
             <el-button
               type="info"
               icon="View"
-              title="查看SKU列表"
+              title="查看SPU列表"
               size="small"
               @click="findSku(row)"
             ></el-button>
@@ -198,17 +212,13 @@ onBeforeUnmount(() => {
       @changeScene="changeScene"
     ></SkuForm>
     <el-dialog v-model="show" title="SKU列表">
-      <el-table :data="skuArr">
-        <el-table-column label="SKU名字" prop="skuName"></el-table-column>
+      <el-table :data="skuArr" border>
+        <el-table-column label="SKU名称" prop="skuName"></el-table-column>
         <el-table-column label="SKU价格" prop="price"></el-table-column>
         <el-table-column label="SKU重量" prop="weight"></el-table-column>
         <el-table-column label="SKU图片">
-          <template #="{ row, $index }">
-            <img
-              :src="row.skuDefaultImg"
-              alt=""
-              style="width: 100px; height: 100px"
-            />
+          <template #default="{ row }">
+            <img :src="row.skuDefaultImg" style="width: 100px; height: 100px" />
           </template>
         </el-table-column>
       </el-table>

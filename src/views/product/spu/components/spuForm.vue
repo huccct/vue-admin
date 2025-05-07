@@ -54,22 +54,40 @@ const initHasSpuData = async (spu: SpuData) => {
   let res3: HasSaleAttrResponseData = await reqAllSalAttr()
 
   AllTradeMark.value = res.data
-  imgList.value = res1.data.map((item) => {
-    return {
-      name: item.imgName,
-      url: item.imgUrl,
-    }
-  })
-  saleAttr.value = res2.data
-  allSaleAttr.value = res3.data
+  if (Array.isArray(res1.data)) {
+    imgList.value = res1.data.map((item) => {
+      return {
+        name: item.imgName,
+        url: item.imgUrl,
+      }
+    })
+  } else {
+    imgList.value = []
+  }
+  if (Array.isArray(res2.data)) {
+    saleAttr.value = res2.data
+  } else {
+    saleAttr.value = []
+  }
+  if (Array.isArray(res3.data)) {
+    allSaleAttr.value = res3.data
+  } else {
+    allSaleAttr.value = []
+  }
 }
 
 const handlePictureCardPreview = (file: any) => {
+  if (!file || !file.url) return
   dialogImageUrl.value = file.url
   dialogVisible.value = true
 }
 
-const handleRemove = () => {}
+const handleRemove = (file: any) => {
+  const index = imgList.value.findIndex((item: any) => item.url === file.url)
+  if (index !== -1) {
+    imgList.value.splice(index, 1)
+  }
+}
 
 const handlerUpload = (file: any) => {
   if (

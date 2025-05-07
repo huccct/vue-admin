@@ -60,18 +60,23 @@ const addTradeMark = () => {
   trademarkParams.logoUrl = ''
 
   nextTick(() => {
-    formRef.value.clearValidate('tmName')
-    formRef.value.clearValidate('logoUrl')
+    if (formRef.value) {
+      formRef.value.clearValidate('tmName')
+      formRef.value.clearValidate('logoUrl')
+    }
   })
 }
 
 const updateTradeMark = (row: TradeMark) => {
-  nextTick(() => {
-    formRef.value.clearValidate('tmName')
-    formRef.value.clearValidate('logoUrl')
-  })
   dialogFormVisible.value = true
   Object.assign(trademarkParams, row)
+
+  nextTick(() => {
+    if (formRef.value) {
+      formRef.value.clearValidate('tmName')
+      formRef.value.clearValidate('logoUrl')
+    }
+  })
 }
 
 const cancel = () => {

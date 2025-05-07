@@ -7,7 +7,7 @@
 -->
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
-import { Ref, computed, reactive, ref } from 'vue'
+import { Ref, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
@@ -44,7 +44,7 @@ let loginForms = ref()
 
 const loginForm = reactive({
   username: 'admin',
-  password: '111111',
+  password: '123456',
   verifyCode: '1234',
 })
 
@@ -87,7 +87,6 @@ const login = async () => {
     await useStore.userLogin(loginForm)
     let redirect: string = $route.query.redirect as string
     $router.push({ path: redirect || '/' })
-    $router.push('/')
     ElNotification({
       type: 'success',
       message: '登陆成功',
